@@ -2,9 +2,31 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>
+  (function(){
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  })();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Malhar Paresh Mangtani — Portfolio</title>
 <meta name="description" content="Portfolio of Malhar Paresh Mangtani — incoming MSCS student at Columbia University, AI/ML Engineer, Data Scientist, and Data Analyst specializing in medical imaging, RAG systems, and computer vision.">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://malharmangtani.github.io">
+<meta property="og:title" content="Malhar Paresh Mangtani — AI/ML Engineer, Data Scientist, Data Analyst">
+<meta property="og:description" content="Incoming MSCS student at Columbia University. Deep learning projects across medical imaging, RAG systems, and computer vision.">
+<meta property="og:image" content="https://malharmangtani.github.io/profile-photo.jpg">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Malhar Paresh Mangtani — AI/ML Engineer, Data Scientist, Data Analyst">
+<meta name="twitter:description" content="Incoming MSCS student at Columbia University. Deep learning projects across medical imaging, RAG systems, and computer vision.">
+<meta name="twitter:image" content="https://malharmangtani.github.io/profile-photo.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,9 +42,23 @@
     --amber: #E0792B;
     --cyan: #3E8FB0;
     --line: #C9C4B8;
+    --header-bg: rgba(236,237,231,0.88);
+    --heading: #16323D;
     --max: 1080px;
     --pad: clamp(20px, 5vw, 64px);
   }
+
+  :root[data-theme="dark"]{
+    --paper: #10161A;
+    --paper-deep: #182026;
+    --ink: #ECEDE7;
+    --ink-soft: #9AA3A8;
+    --line: #2A343A;
+    --header-bg: rgba(16,22,26,0.88);
+    --heading: #E8ECEC;
+  }
+
+  body{ transition:background-color .25s ease, color .25s ease; }
 
   *{ margin:0; padding:0; box-sizing:border-box; }
 
@@ -88,7 +124,7 @@
     position:sticky;
     top:0;
     z-index:50;
-    background:rgba(236,237,231,0.88);
+    background:var(--header-bg);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
   }
@@ -108,6 +144,29 @@
     font-size:18px;
   }
   .brand .dot{ color:var(--amber); }
+  .nav-right{
+    display:flex;
+    align-items:center;
+    gap:24px;
+  }
+  .theme-toggle{
+    background:none;
+    border:1px solid var(--line);
+    color:var(--ink);
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+    transition:border-color .2s;
+  }
+  .theme-toggle:hover{ border-color:var(--amber); }
+  .theme-icon-dark{ display:none; }
+  :root[data-theme="dark"] .theme-icon-light{ display:none; }
+  :root[data-theme="dark"] .theme-icon-dark{ display:inline; }
   nav ul{
     display:flex;
     gap:28px;
@@ -122,6 +181,7 @@
     font-weight:500;
   }
   nav ul li a:hover{ color:var(--amber); }
+  nav ul li a.active{ color:var(--amber); }
   .nav-toggle{
     display:none;
     background:none;
@@ -177,7 +237,7 @@
   }
   .hero h1{
     font-size:clamp(2.6rem, 7vw, 5rem);
-    color:var(--deep);
+    color:var(--heading);
     max-width:780px;
   }
   .hero h1 .accent{
@@ -254,7 +314,7 @@
   }
   section h2{
     font-size:clamp(1.8rem, 4vw, 2.6rem);
-    color:var(--deep);
+    color:var(--heading);
     margin-bottom:14px;
   }
   .section-intro{
@@ -287,6 +347,15 @@
   }
   .stat-row:last-child{ border-bottom:none; }
   .stat-row .val{ color:var(--amber); font-weight:600; }
+
+  .profile-photo{
+    width:120px;
+    height:120px;
+    object-fit:cover;
+    border:1px solid var(--line);
+    margin-bottom:20px;
+    display:block;
+  }
 
   /* ---------- Experience timeline ---------- */
   .timeline{
@@ -324,7 +393,7 @@
     color:var(--ink-soft);
     padding-top:1px;
   }
-  .tl-role{ font-size:1.15rem; font-weight:600; color:var(--deep); margin-bottom:3px; }
+  .tl-role{ font-size:1.15rem; font-weight:600; color:var(--heading); margin-bottom:3px; }
   .tl-org{ font-size:0.92rem; color:var(--ink-soft); margin-bottom:12px; }
   .tl-item ul{ list-style:none; color:var(--ink-soft); font-size:0.96rem; }
   .tl-item ul li{ margin-bottom:8px; padding-left:18px; position:relative; }
@@ -362,7 +431,7 @@
     color:var(--cyan);
     margin-bottom:12px;
   }
-  .proj-card h3{ font-size:1.3rem; color:var(--deep); margin-bottom:10px; }
+  .proj-card h3{ font-size:1.3rem; color:var(--heading); margin-bottom:10px; }
   .proj-card p{ color:var(--ink-soft); font-size:0.95rem; margin-bottom:18px; flex-grow:1; }
   .metrics{
     display:flex;
@@ -398,7 +467,7 @@
     gap:24px;
     flex-wrap:wrap;
   }
-  .pub h3{ font-size:1.1rem; color:var(--deep); margin-bottom:8px; }
+  .pub h3{ font-size:1.1rem; color:var(--heading); margin-bottom:8px; }
   .pub p{ color:var(--ink-soft); font-size:0.93rem; }
   .pub-meta{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft); white-space:nowrap; flex-shrink: 0; }
   .award{
@@ -439,7 +508,7 @@
     align-items:baseline;
   }
   .edu-item:last-child{ border-bottom:none; }
-  .edu-item h3{ font-size:1.15rem; color:var(--deep); }
+  .edu-item h3{ font-size:1.15rem; color:var(--heading); }
   .edu-item .school{ color:var(--ink-soft); font-size:0.93rem; margin-top:3px; }
   .edu-date{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-soft); }
   .edu-detail{ grid-column:1/-1; color:var(--ink-soft); font-size:0.93rem; margin-top:4px; }
@@ -488,6 +557,22 @@
   @media (prefers-reduced-motion: reduce){
     .reveal{ opacity:1; transform:none; transition:none; }
   }
+
+  /* ---------- Print ---------- */
+  @media print{
+    .theme-toggle, .nav-toggle, .scan-line, .scan-grid, header.site{ display:none !important; }
+    body{ background:#fff; color:#000; }
+    section{ border-top:1px solid #ccc; padding:24px 0; page-break-inside:avoid; }
+    .hero{ padding:24px 0; }
+    .hero h1, h2{ color:#000; }
+    .hero h1 .accent{ -webkit-text-fill-color:initial; background:none; color:#000; }
+    .reveal{ opacity:1 !important; transform:none !important; }
+    .btn, .proj-card, .stat-block, .pub, .edu-item{ border:1px solid #999; box-shadow:none; }
+    footer.contact{ background:#fff; color:#000; }
+    footer.contact h2, footer.contact .slice{ color:#000; }
+    a{ color:#000; text-decoration:underline; }
+    .profile-photo{ display:none; }
+  }
 </style>
 </head>
 <body>
@@ -495,16 +580,21 @@
 <header class="site">
   <nav>
     <div class="brand">Malhar Paresh Mangtani</div>
-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" id="navToggle"><span></span><span></span><span></span></button>
-    <ul id="navMenu">
-      <li><a href="#about">About</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#publications">Publications</a></li>
-      <li><a href="#skills">Skills &amp; Interests</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul id="navMenu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#skills">Skills &amp; Interests</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="theme-icon-light">☀</span><span class="theme-icon-dark">☾</span>
+      </button>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" id="navToggle"><span></span><span></span><span></span></button>
+    </div>
   </nav>
 </header>
 
@@ -534,6 +624,7 @@
         <p>I've also presented at IEEE ICETCI 2025 in Hyderabad, where I won the Best Presenter award for my work on explainable malaria detection.</p>
       </div>
       <div class="stat-block reveal">
+        <img class="profile-photo" src="profile-photo.jpg" alt="Malhar Paresh Mangtani" loading="lazy">
         <div class="stat-row"><span>CPI</span><span class="val">9.35 / 10.00</span></div>
         <div class="stat-row"><span>Degree CGPA</span><span class="val">9.11 / 10.00</span></div>
         <div class="stat-row"><span>AI/ML Honors CGPA</span><span class="val">10.00 / 10.00</span></div>
@@ -634,7 +725,7 @@
   <div class="container">
     <div class="slice">Section 04 / 06 — Projects</div>
     <h2>Projects</h2>
-    <p class="section-intro">Selected work spanning generative medical imaging, explainable diagnostics, and human–computer interaction. Codebases are private — happy to walk through architecture, methodology, and results directly.</p>
+    <p class="section-intro">A selection of deep learning projects across medical imaging, computer vision, and applied AI. Codebases are private — happy to walk through architecture, methodology, and results directly.</p>
 
     <div class="proj-grid">
 
@@ -707,7 +798,7 @@
     <div class="pub reveal">
       <div>
         <h3>Malaria Parasite Detection in Thin Blood Smear Images Using ConvNeXt with Explanation</h3>
-        <p>Proceedings of the IEEE International Conference on Emerging Techniques in Computational Intelligence (ICETCI 2025), Hyderabad, India.</p>
+        <p>Published in the Proceedings of the IEEE International Conference on Emerging Techniques in Computational Intelligence (ICETCI 2025), Hyderabad, India.</p>
         <span class="award">Best Presenter Award</span>
       </div>
       <div class="pub-meta">DOI: 10.1109/ICETCI67340.2025.11258060</div>
@@ -795,6 +886,34 @@
     });
   }, { threshold: 0.12 });
   revealEls.forEach(el => io.observe(el));
+
+  // Theme toggle
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+
+  // Active nav link highlight based on scroll position
+  const navLinks = document.querySelectorAll('#navMenu a');
+  const sections = [...navLinks].map(link => document.querySelector(link.getAttribute('href')));
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = '#' + entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === id);
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+  sections.forEach(section => { if (section) navObserver.observe(section); });
 </script>
 
 </body>
