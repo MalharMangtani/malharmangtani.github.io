@@ -467,6 +467,7 @@
     gap:24px;
     flex-wrap:wrap;
   }
+  .pub + .pub{ margin-top:20px; }
   .pub h3{ font-size:1.1rem; color:var(--heading); margin-bottom:8px; }
   .pub p{ color:var(--ink-soft); font-size:0.93rem; }
   .pub-meta{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft); white-space:nowrap; flex-shrink: 0; }
@@ -628,7 +629,7 @@
         <div class="stat-row"><span>CPI</span><span class="val">9.35 / 10.00</span></div>
         <div class="stat-row"><span>Degree CGPA</span><span class="val">9.11 / 10.00</span></div>
         <div class="stat-row"><span>AI/ML Honors CGPA</span><span class="val">10.00 / 10.00</span></div>
-        <div class="stat-row"><span>IEEE Publication</span><span class="val">1</span></div>
+        <div class="stat-row"><span>IEEE Publications</span><span class="val">2</span></div>
         <div class="stat-row"><span>Internships</span><span class="val">3 countries</span></div>
         <div class="stat-row"><span>Records queried (SmartITAC)</span><span class="val">167,000+</span></div>
         <div class="stat-row"><span>Best Presenter</span><span class="val">ICETCI 2025</span></div>
@@ -731,7 +732,7 @@
       <div class="proj-card featured reveal">
         <div class="proj-tag">Generative Modeling · Medical Imaging · 2025</div>
         <h3>Synthetic CT Generation from MRI</h3>
-        <p>Designed and iteratively improved a 3D deep learning pipeline for MRI-to-CT synthesis, progressing from a 3D Pix2Pix GAN (3D U-Net generator) to an anatomy-aware SwinGAN (SwinUNETR generator), both paired with a ConvNeXt-based anatomical classifier. Achieved stronger results with SwinGAN across all anatomical regions, with peak performance on the Thorax — outperforming the Pix2Pix baseline with high structural fidelity in complex bone-air interface regions.</p>
+        <p>Designed and iteratively improved a 3D deep learning pipeline for MRI-to-CT synthesis, progressing from a 3D Pix2Pix GAN (3D U-Net generator) to an anatomy-aware SwinGAN (SwinUNETR generator), both paired with a ConvNeXt-based anatomical classifier. Achieved stronger results with SwinGAN across all anatomical regions, with peak performance on the Thorax — outperforming the Pix2Pix baseline with high structural fidelity in complex bone-air interface regions. Published in the Proceedings of IEEE ICETCI 2026, Hyderabad, India.</p>
         <div class="metrics">
           <div class="metric"><span class="num">0.932</span><span class="lab">avg. MS-SSIM</span></div>
           <div class="metric"><span class="num">27.83 dB</span><span class="lab">avg. PSNR</span></div>
@@ -796,6 +797,13 @@
   <div class="container">
     <div class="slice">Section 05 / 06 — Publications</div>
     <h2>Publications</h2>
+    <div class="pub reveal">
+      <div>
+        <h3>Synthetic CT Generation from MRI Using GAN for Radiotherapy Applications</h3>
+        <p>Published in the Proceedings of the 2026 International Conference on Emerging Techniques in Computational Intelligence (ICETCI 2026), Hyderabad, India.</p>
+      </div>
+      <div class="pub-meta">DOI: 10.1109/ICETCI71772.2026.11710497</div>
+    </div>
     <div class="pub reveal">
       <div>
         <h3>Malaria Parasite Detection in Thin Blood Smear Images Using ConvNeXt with Explanation</h3>
